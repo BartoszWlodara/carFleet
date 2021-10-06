@@ -33,14 +33,12 @@ export default {
     },
     methods:{
         async Login(){
-            //alert(this.email + " " + this.password);
             try{
                 await this.$store.dispatch('login', this.user);
-                await this.$router.push({name: 'Home'});
+                await this.$router.push({name: 'CarListView'});
             }catch(error){
                 console.log(error)
             }
-            
         }
     }
 }

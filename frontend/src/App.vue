@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Navbar v-if="authenticated"></Navbar>
    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
@@ -8,10 +9,27 @@
     <router-view/>
   </div>
 </template>
+<script>
+import Navbar from './components/NavbarComponent.vue'
+import {mapGetters} from 'vuex' 
 
+export default {
+  name: 'App',
+  components:{
+    Navbar
+  },
+  computed: {
+    ...mapGetters([
+      'authenticated'
+    ])
+  }
+  
+}
+</script>
 <style>
 body{
   margin: 0;
+  background-color: #383838;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

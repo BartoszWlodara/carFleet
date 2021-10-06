@@ -13,6 +13,16 @@ export default new Vuex.Store({
     SET_USER(state, data){
       state.user = data.user;
       state.token = data.token;
+
+      localStorage.user = JSON.stringify(data.user);
+      localStorage.token = data.token;
+    },
+    SET_LOGOUT_USER(state){
+      state.user = null;
+      state.token = null;
+
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
     }
   },
   actions: {
@@ -20,9 +30,10 @@ export default new Vuex.Store({
       await repository.createSession();
       const {data} = await repository.login(user);
       commit('SET_USER', data);
-
-      localStorage.user = JSON.stringify(data.user);
-      localStorage.token = data.token;
+    },
+    async logout({commit}){
+      await repository.logout();
+      commit('SET_LOGOUT_USER'); 
     }
   },
   getters:{

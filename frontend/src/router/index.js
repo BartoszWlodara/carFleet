@@ -22,6 +22,12 @@ const routes = [
     beforeEnter: middleware.user
   },
   {
+    path: '/addCar',
+    name: 'AddCar',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AddCarView.vue'),
+    beforeEnter: middleware.user
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "loginView" */ '../views/LoginView.vue'),

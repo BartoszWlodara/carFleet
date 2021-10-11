@@ -16,5 +16,12 @@ export default {
                 'Authorization': localStorage.token? 'Bearer ' + localStorage.token : null
             }
         })
+    },
+    addCar(param){
+        return api.post('api/car/store', {car: param}, {
+            headers:{
+                'Authorization': localStorage.token? 'Bearer ' + localStorage.token : null
+            }
+        })
     }
 }

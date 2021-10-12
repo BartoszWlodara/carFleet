@@ -23,5 +23,12 @@ export default {
                 'Authorization': localStorage.token? 'Bearer ' + localStorage.token : null
             }
         })
+    },
+    deleteCar(id){
+        return api.delete(`api/car/${id}`, {
+            headers:{
+                'Authorization': localStorage.token? 'Bearer ' + localStorage.token : null
+            }
+        })
     }
 }

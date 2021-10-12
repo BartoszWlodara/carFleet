@@ -24,35 +24,57 @@
                 <label class="grid_column_label">Poprzednia wym. oleju</label>
             </div>
             <div class="grid_column actions">
-                <div @click="UpdateElement" class="grid_column_action_button">
+                <router-link tag="div" :to='"updateCar/"+car.id' class="grid_column_action_button">
                     <EditIcon size="1.35x" class="carList_icons" />
-                </div>
-                <div @click="DeleteElement" class="grid_column_action_button red">
+                </router-link>
+                <div @click="ShowDeleteModal(car.id)" class="grid_column_action_button red">
                     <Trash2Icon size="1.35x" class="carList_icons" />
                 </div>
             </div>
         </div>
+        <transition name="fade">
+            <DeleteModal v-if="showDeleteModal" @close="CloseDeleteModal" @delete="DeleteCarElement"/>
+        </transition>
     </div>
 </template>
 <script>
 import {EditIcon, Trash2Icon} from '../assets/Icons'
 import API from '../api/repository'
+import DeleteModal from './Modals/DeleteModal.vue'
 
 export default {
     name: 'CarGrid',
     components:{
         EditIcon,
-        Trash2Icon
+        Trash2Icon,
+        DeleteModal
     },
     data(){
         return{
             CarList: [],
-            leftLastElement: false
+            leftLastElement: false,
+            carToDelete: null,
+            showDeleteModal: false
         }
     },
     methods:{
-        DeleteElement(){
-            console.log('fdsfsdfs');
+        ShowDeleteModal(id){
+            this.carToDelete = id;
+            this.showDeleteModal = true;
+        },
+        CloseDeleteModal(){
+            this.carToDelete = null;
+            this.showDeleteModal = false;
+        },
+        async DeleteCarElement(){
+            try{
+                await API.deleteCar(this.carToDelete).then(()=>{
+                    this.$router.go();
+                });
+            }catch(error){
+                console.log(error);
+                this.CloseDeleteModal();
+            }
         },
         UpdateElement(){
          

@@ -51,4 +51,20 @@ body{
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.row{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.red_btn{
+  background-color: rgb(123 32 32);
+  color: #ffffff!important;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

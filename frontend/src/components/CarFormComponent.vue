@@ -80,7 +80,6 @@ export default {
                     this.error = [];
                 }             
             }
-
             if(this.error.length === 0){
                 try{
                     await API.addCar(this.car).then(()=>{

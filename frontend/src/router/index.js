@@ -13,18 +13,15 @@ const routes = [
     beforeEnter: middleware.user
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/addCar',
+    name: 'AddCar',
+    component: () => import(/* webpackChunkName: "addCar" */ '../views/AddCarView.vue'),
     beforeEnter: middleware.user
   },
   {
-    path: '/addCar',
-    name: 'AddCar',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AddCarView.vue'),
+    path: '/updateCar/:id',
+    name: 'UpdateCar',
+    component: () => import(/* webpackChunkName: "updateCar" */ '../views/UpdateCarView.vue'),
     beforeEnter: middleware.user
   },
   {
